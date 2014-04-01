@@ -37,6 +37,16 @@ void setup()
   else Serial.println("\nstatus=IDLE");
   
   if(started){
+    for(int i = 0; i < 5; i++) {
+      byte regStatus = gsm.CheckRegistration();
+      if(regStatus == REG_REGISTERED) {
+        break;
+      }
+      else {
+        delay(10000);
+      }
+    }
+
     //Enable this two lines if you want to send an SMS.
     //if (sms.SendSMS("3471234567", "Arduino SMS"))
       //Serial.println("\nSMS sent OK");
